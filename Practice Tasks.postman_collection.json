@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "61c91725-c1c5-4613-9db2-cd26bf554340",
+		"name": "Practice Tasks",
+		"description": "StartFragment- Open Postman and create a new request by clicking on the \"New\" button.\n- Set the request method to POST and enter the API endpoint for creating a new user.\n- In the request body, enter the required information for creating a new user, such as name, email address, etc.\n- Send the request by clicking on the \"Send\" button.\n- Verify that the API returns a status code of 201 (created).\n- Verify that the response body contains the newly created user's information, including a unique user ID, name, email address, and any other relevant information.\n- Send a GET request to the API endpoint for retrieving the newly created user by ID.\n- Verify that the API returns a status code of 200 and the response body contains the user's information.\n- Send a PUT request to the API endpoint for updating the user's information.\n- In the request body, enter the updated information for the user.\n- Verify that the API returns a status code of 200 and the response body contains the updated user's information.\n- Send a DELETE request to the API endpoint for deleting the user.\nEndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25312172"
+	},
+	"item": [
+		{
+			"name": "Task 1",
+			"item": [
+				{
+					"name": "CREATE TOKEN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Save token\", function(){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"token\", jsonData.token);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://restful-booker.herokuapp.com/auth",
+							"protocol": "https",
+							"host": [
+								"restful-booker",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body should contain the newly created user's information\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.booking).to.exist;\r",
+									"    pm.expect(jsonData.bookingid).to.exist;\r",
+									"    \r",
+									"});\r",
+									"var responseJson = pm.response.json();\r",
+									"var bookingid = responseJson.bookingid;\r",
+									"pm.environment.set(\"bookingid\", bookingid)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\" : \"John\",\r\n    \"lastname\" : \"Pol\",\r\n    \"totalprice\" : 150,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2023-01-01\",\r\n        \"checkout\" : \"2023-05-04\"\r\n    },\r\n    \"additionalneeds\" : \"Breakfast\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://restful-booker.herokuapp.com/booking",
+							"protocol": "https",
+							"host": [
+								"restful-booker",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET CREATED USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response body contains user's information\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.firstname).to.eql(\"John\");\r",
+									"    pm.expect(jsonData.lastname).to.eql(\"Pol\");\r",
+									"    pm.expect(jsonData.totalprice).to.eql(150);\r",
+									"    pm.expect(jsonData.depositpaid).to.eql(true);\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.eql(\"2023-01-01\");\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.eql(\"2023-05-04\");\r",
+									"    pm.expect(jsonData.additionalneeds).to.eqls(\"Breakfast\")\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://restful-booker.herokuapp.com/booking/{{bookingid}}",
+							"protocol": "https",
+							"host": [
+								"restful-booker",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"booking",
+								"{{bookingid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE USER",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token=\"bef00fd52798638\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://restful-booker.herokuapp.com/booking/{{bookingid}}",
+							"protocol": "https",
+							"host": [
+								"restful-booker",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"booking",
+								"{{bookingid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
