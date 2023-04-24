@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "Task 1",
+			"name": "Task 1 /Test",
 			"item": [
 				{
 					"name": "CREATE TOKEN",
@@ -187,6 +187,548 @@
 							"path": [
 								"booking",
 								"{{bookingid}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task 2",
+			"item": [
+				{
+					"name": "POST New User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John Doe\",\r\n  \"username\": \"johndoe\",\r\n  \"email\": \"johndoe@example.com\",\r\n  \"phone\": \"555-555-5555\",\r\n  \"website\": \"johndoe.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/users",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n1. Create a new project in Postman.\n2. Add a new Request and name it \"POST New User\".\n3. Set the HTTP method to POST.\n4. Enter the URL: [https://jsonplaceholder.typicode.com/users](https://jsonplaceholder.typicode.com/users)\n5. In the Body tab, select \"raw\" and choose JSON format.\n6. Add the following JSON data to the request body:\n    \n\n```\nperlCopy code{\n  \"name\": \"John Doe\",\n  \"username\": \"johndoe\",\n  \"email\": \"johndoe@example.com\",\n  \"phone\": \"555-555-5555\",\n  \"website\": \"johndoe.com\"\n}\n\n```\n\n1. Send the request and see the response from the server.\n    \n\nEndFragment"
+		},
+		{
+			"name": "Task 3",
+			"item": [
+				{
+					"name": "PUT Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Jane Doe\",\r\n  \"email\": \"janedoe@example.com\",\r\n  \"phone\": \"555-555-1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/users/1",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						},
+						"description": "StartFragment\n\n1. Create a new project in Postman.\n2. Add a new Request and name it \"PUT Update User\".\n3. Set the HTTP method to PUT.\n4. Enter the URL: [https://jsonplaceholder.typicode.com/users/1](https://jsonplaceholder.typicode.com/users/1) (this assumes that the user with ID 1 already exists)\n5. In the Body tab, select \"raw\" and choose JSON format.\n6. Add the following JSON data to the request body, which updates the user's name, email, and phone number:\n    \n\n```\nperlCopy code{\n  \"name\": \"Jane Doe\",\n  \"email\": \"janedoe@example.com\",\n  \"phone\": \"555-555-1234\"\n}\n\n```\n\n1. In the Headers tab, add a new header with key \"Content-Type\" and value \"application/json\".\n2. Send the request and see the response from the server.\n    \n\nEndFragment"
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n1. Create a new project in Postman.\n2. Add a new Request and name it \"PUT Update User\".\n3. Set the HTTP method to PUT.\n4. Enter the URL: [https://jsonplaceholder.typicode.com/users/1](https://jsonplaceholder.typicode.com/users/1) (this assumes that the user with ID 1 already exists)\n5. In the Body tab, select \"raw\" and choose JSON format.\n6. Add the following JSON data to the request body, which updates the user's name, email, and phone number:\n    \n\n```\nperlCopy code{\n  \"name\": \"Jane Doe\",\n  \"email\": \"janedoe@example.com\",\n  \"phone\": \"555-555-1234\"\n}\n\n```\n\n1. In the Headers tab, add a new header with key \"Content-Type\" and value \"application/json\".\n2. Send the request and see the response from the server.\n    \n\nEndFragment"
+		},
+		{
+			"name": "Task 4",
+			"item": [
+				{
+					"name": "GET Weather Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://api.weatherapi.com/v1/current.json?q=Warsaw&key=aaf0de38fadc48b582585802231304",
+							"protocol": "http",
+							"host": [
+								"api",
+								"weatherapi",
+								"com"
+							],
+							"path": [
+								"v1",
+								"current.json"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Warsaw",
+									"description": "city name"
+								},
+								{
+									"key": "key",
+									"value": "aaf0de38fadc48b582585802231304",
+									"description": "api key\n"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task 5 / Test",
+			"item": [
+				{
+					"name": "GET List of Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body is not empty\", function () {\r",
+									"    pm.response.to.not.be.empty;\r",
+									"});\r",
+									"pm.test(\"Response body contains an array of users with at least one user in it\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data).to.be.an('array');\r",
+									"    pm.expect(jsonData.data.length).to.be.greaterThan(0);\r",
+									"})\r",
+									"pm.test(\"First user in array has an 'id' field that is a number\", function (){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data[0].id).to.be.a('number');\r",
+									"});\r",
+									"pm.test(\"First user in array has an 'email' field that is a string\", function (){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data[0].email).to.be.a('string');\r",
+									"});\r",
+									"pm.test(\"First user in array has an 'first_name' field that is a string\", function (){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data[0].first_name).to.be.a('string');\r",
+									"});\r",
+									"pm.test(\"First user in array has an 'last_name' field that is a string\", function (){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data[0].last_name).to.be.a('string');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/users?page=2",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n1. Create a new project in Postman.\n2. Add a new Request and name it \"GET List of Users\".\n3. Set the HTTP method to GET.\n4. Enter the URL: [https://reqres.in/api/users?page=2](https://reqres.in/api/users?page=2)\n5. Send the request and see the response from the server.\n6. In the Tests tab, add the following tests:\n    \n\n- Test that the response status code is 200.\n- Test that the response body is not empty.\n- Test that the response body contains an array of users with at least one user in it.\n- Test that the first user in the array has an \"id\" field that is a number.\n- Test that the first user in the array has an \"email\" field that is a string.\n- Test that the first user in the array has a \"first_name\" field that is a string.\n- Test that the first user in the array has a \"last_name\" field that is a string.\n    \n\n1. Send the request again and see the results of the tests in the \"Test Results\" tab.\n    \n\nEndFragment"
+		},
+		{
+			"name": "Task 6",
+			"item": [
+				{
+					"name": "GET posts test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response body contains an object with a 'userId' field that is a number and has a value of 1\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.userId).to.be.a('number');\r",
+									"    pm.expect(jsonData.userId).to.equal(1);\r",
+									"});\r",
+									"pm.test(\"Response body contains an object with a 'title' field that is a string and has a value that is not empty\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.title).to.be.a('string');\r",
+									"    pm.expect(jsonData.title).to.not.be.empty;\r",
+									"});\r",
+									"pm.test(\"Response body contains an object with a 'body' field that is a string and has a value that is not empty\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.body).to.be.a('string');\r",
+									"    pm.expect(jsonData.body).to.not.be.empty;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/posts/1",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n1. Create a new request in Postman to the following endpoint: [https://jsonplaceholder.typicode.com/posts/1](https://jsonplaceholder.typicode.com/posts/1)\n2. In the Headers tab, add a key-value pair for \"Content-Type\" with a value of \"application/json\".\n3. In the Tests tab, write the following tests:\n    - Test that the response status code is 200 OK.\n    - Test that the response body contains an object with a \"userId\" field that is a number and has a value of 1.\n    - Test that the response body contains an object with a \"title\" field that is a string and has a value that is not empty.\n    - Test that the response body contains an object with a \"body\" field that is a string and has a value that is not empty.\n4. Send the request and verify that all tests pass.\n    \n\nEndFragment"
+		},
+		{
+			"name": "Task 7",
+			"item": [
+				{
+					"name": "GET Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body contains an 'array' of users with at least one user in it\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data).to.be.an('array').that.is.not.empty;\r",
+									"});\r",
+									"pm.test(\"First user in the 'array' has a 'id' field that is a number and is greater than 0\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data[0].id).to.be.a('number');\r",
+									"    pm.expect(jsonData.data[0].id).to.be.greaterThan(0);\r",
+									"});\r",
+									"pm.test(\"Second user in the 'array' han an 'email' field that is 'string' and has a value that is not empty\", function(){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data[1].email).to.be.a('string');\r",
+									"    pm.expect(jsonData.data[1].email).to.not.be.empty;\r",
+									"})\r",
+									"pm.test(\"Third user in the 'array' han an 'last_name' field that is 'string' and has a value that is not empty\", function(){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data[2].last_name).to.be.a('string');\r",
+									"    pm.expect(jsonData.data[2].last_name).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/users",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\nAPI Endpoint: `https://reqres.in/api/users`\n\nTest Scenarios:\n\n1. Test that the response status code is 200 OK.\n2. Test that the response body contains an array of users with at least one user in it.\n3. Test that the first user in the array has a \"id\" field that is a number and has a value greater than 0.\n4. Test that the second user in the array has an \"email\" field that is a string and has a value that is not empty.\n5. Test that the third user in the array has a \"last_name\" field that is a string and has a value that is not empty.\n    \n\nEndFragment"
+		},
+		{
+			"name": "Task 8",
+			"item": [
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response contains at least one post\", function(){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length).to.be.above(0);\r",
+									"})\r",
+									"var jsonData = pm.response.json();\r",
+									"for(var i = 0; i < jsonData.length; i++){\r",
+									"    pm.test(\"Post \" + (i+1) + \" has an id field\",function(){\r",
+									"        pm.expect(jsonData[i]).to.have.property(\"id\");\r",
+									"    }); \r",
+									"     pm.test(\"Post \" + (i+1) + \" has a title field\", function() {\r",
+									"        pm.expect(jsonData[i]).to.have.property(\"title\");\r",
+									"    });\r",
+									"\r",
+									"    // Test if each post has a \"body\" field\r",
+									"    pm.test(\"Post \" + (i+1) + \" has a body field\", function() {\r",
+									"        pm.expect(jsonData[i]).to.have.property(\"body\");\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/posts",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\n1. Open Postman and create a new request.\n2. Set the request URL to \"[https://jsonplaceholder.typicode.com/posts](https://jsonplaceholder.typicode.com/posts)\".\n3. Set the request method to GET.\n4. Add a header to the request with the key \"Content-Type\" and the value \"application/json\".\n5. Send the request to the API.\n6. In the response, verify that the HTTP status code is 200.\n7. Verify that the response contains an array of posts with at least one post.\n8. Verify that each post in the response has an \"id\", \"title\", and \"body\" field.\n9. Verify that the value of the \"title\" field is a non-empty string for each post in the response.\n10. Verify that the value of the \"id\" field is a positive integer for each post in the response.\n11. Verify that the value of the \"body\" field is a non-empty string for each post in the response.\n12. Save the request and the tests as a collection in Postman.\n    \n\nEndFragment"
+		},
+		{
+			"name": "Task 9",
+			"item": [
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Response contains an 'id' field\", function(){\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"});\r",
+									"pm.test(\"Name in response matches name in request\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.equal(jsonData.name);\r",
+									"});\r",
+									"pm.test(\"Job in response matches Job in request\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.job).to.equal(jsonData.job);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"job\": \"Software Developer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/users",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "StartFragment\n\n1. Open Postman and create a new request.\n2. Set the request URL to \"[https://reqres.in/api/users](https://reqres.in/api/users)\".\n3. Set the request method to POST.\n4. Add a header to the request with the key \"Content-Type\" and the value \"application/json\".\n5. Add a request body with the following JSON data:\n    \n\n```\njsonCopy code{\n    \"name\": \"John Doe\",\n    \"job\": \"Software Developer\"\n}\n\n```\n\n1. Send the request to the API.\n2. In the response, verify that the HTTP status code is 201.\n3. Verify that the response contains an \"id\" field.\n4. Verify that the value of the \"name\" field in the response matches the value of the \"name\" field in the request.\n5. Verify that the value of the \"job\" field in the response matches the value of the \"job\" field in the request.\n6. Save the request and the tests as a collection in Postman.\n    \n\nEndFragment"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task 10",
+			"item": [
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.test(\"Response contains an 'id' field\", function(){\r",
+									"    pm.expect(jsonData).to.have.property(\"id\");\r",
+									"})\r",
+									"var requestTitle = JSON.parse(pm.request.body.raw).title;\r",
+									"pm.test(\"Value of 'title' field in response matches value in request\", function() {\r",
+									"    pm.expect(jsonData.title).to.equal(requestTitle);\r",
+									"});\r",
+									"\r",
+									"var requestBody = JSON.parse(pm.request.body.raw).body;\r",
+									"pm.test(\"Value of 'body' field in response matches value in request\", function() {\r",
+									"    pm.expect(jsonData.body).to.equal(requestBody);\r",
+									"});\r",
+									"var requestUserId = JSON.parse(pm.request.body.raw).userId;\r",
+									"pm.test(\"Value of 'userId' field in response matches value in request\", function() {\r",
+									"    pm.expect(jsonData.userId).to.equal(requestUserId);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Example Post\",\r\n    \"body\": \"This is an example post\",\r\n    \"userId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/posts",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"posts"
+							]
+						},
+						"description": "StartFragment\n\n1. Open Postman and create a new request.\n2. Set the request URL to \"[https://jsonplaceholder.typicode.com/posts](https://jsonplaceholder.typicode.com/posts)\".\n3. Set the request method to POST.\n4. Add a request body with the following JSON payload:\n    \n\n```\njsonCopy code{\n    \"title\": \"Example Post\",\n    \"body\": \"This is an example post\",\n    \"userId\": 1\n}\n\n```\n\n1. Send the request to the API.\n2. In the response, verify that the HTTP status code is 201.\n3. Verify that the response contains an \"id\" field.\n4. Verify that the value of the \"title\" field in the response matches the value of the \"title\" field in the request.\n5. Verify that the value of the \"body\" field in the response matches the value of the \"body\" field in the request.\n6. Verify that the value of the \"userId\" field in the response matches the value of the \"userId\" field in the request.\n7. Save the request and the tests as a collection in Postman.\n    \n\nEndFragment"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task 11",
+			"item": [
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response body is a valid JSON object\", function() {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://reqres.in/api/users",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
 							]
 						}
 					},
